@@ -99,7 +99,10 @@ class Post {
     }
 
     public function createNewPost() {
-        $this->post_img = "images/itec_blog_628df26139e79.jpeg";
+        // Use FileManager::moveUploadedFile() to move uploaded file to final dest, get that location to 
+        // write to the DB
+
+        $this->post_img = FileManager::moveUploadedFile();
         $this->post_user_id = 1;
         $sql = "INSERT INTO posts (title, body, user_id, post_img) 
                 VALUES (?,?,?,?)";

@@ -34,8 +34,11 @@ class FileManager {
         // if true then store the temp 
     }   
 
-    public static function moveFile($dest) {
+    public static function moveUploadedFile() {
         // move upload to dest after renaming it
-        // return the final file name + destination
+        $new_name = "images/" . uniqid("itec_") . "." . self::$ext;        // return the final file name + destination
+        $dest = "public/" . $new_name;
+        move_uploaded_file(self::$temp, $dest);
+        return $new_name;
     }
 }
