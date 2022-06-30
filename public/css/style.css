@@ -1,0 +1,9 @@
+body {
+    margin-top: 50px;
+}
+
+.jumbotron.front {
+    background: url(../images/bg.png);
+    background-size: cover;
+    color: white;
+}
