@@ -12,8 +12,9 @@ class PostsController extends Controller {
     // controller methods
     public function getPosts() {
         $posts = new Post($this->conn);
-        if($posts->fetchPosts($this->params['offset'], $this->params['limit'])->success()) {
-            
+        $offset = $this->params['offset'] ?? 0;
+        $limit = $this->params['limit'] ?? 6;
+        if($posts->fetchPosts($offset, $limit)->success()) {
             $num_btns = $posts->getNumBtns();
             var_dump($num_btns);
             $posts = $posts->getPosts();

@@ -42,6 +42,26 @@
         <?php endforeach; ?>
     </div>
 </div>
+
+<div class="container">
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <?php 
+        for ($i=0; $i < $num_btns; $i++) { 
+            $offset = $i *  $limit;
+            $page = $i + 1;
+            echo "<li class='page-item'><a class='page-link' href='posts?offset={$offset}&limit={$limit}'>{$page}</a></li>";
+        }
+    ?>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+</div>
 <?php
  include "inc/footer.php";
 ?>

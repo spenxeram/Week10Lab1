@@ -7,8 +7,14 @@ class HomeController extends Controller {
     }
 
     public function index() {
-        $post = new Post($this->conn);
-        $posts = $post->fetchPosts()->getPosts();
-        include "views/home.php";
+        $posts = new Post($this->conn);
+        $offset = $this->params['offset'] ?? 0;
+        $limit = $this->params['limit'] ?? 6;
+        if($posts->fetchPosts($offset, $limit)->success()) {
+            $num_btns = $posts->getNumBtns();
+            var_dump($num_btns);
+            $posts = $posts->getPosts();
+            include "views/home.php";
+        }
     }
 }
