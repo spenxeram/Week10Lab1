@@ -20,15 +20,26 @@
     <h3>Recent Posts</h3>
     <hr>
     <div class="row">
-        <?php foreach ($posts as $post): ?>
-            <div class="col-md-4 my-3 d-flex">
-                <div class="card p-4 w-100 bg-light">
-                   <a href="<?= ROOT?>posts/get/<?=$post['id']?>">
-                   <h3><?= $post['title']; ?></h3>
-                   </a>
-                   <p><?= substr($post['body'], 0, 100);?></p>
+    <?php foreach($posts as $post): ?>
+        <div class="col-md-4 my-3 d-flex">
+            <div class="card w-100">
+                <img src="<?= ROOT . "public/" . $post['post_img']; ?>" class="card-img-top" alt="" height="200px">
+                <div class="card-body">
+                  <a href="<?= ROOT ?>posts/get/<?php echo $post['id'] ?>">
+                     <h5 class="card-title"><?= $post['title']; ?></h5>
+                 </a>
+                  <p class="card-text"><?= substr($post['body'], 0, 100) ?></p>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <div>
+                    <?php echo $post['username'] . " | " . date("d M Y", strtotime($post['date_created'])); ?>
+                    </div>
+                    <div>
+                        <i class="fa fa-comment" aria-hidden="true"></i> <?php echo $post['num_comments']; ?>
+                    </div>
                 </div>
             </div>
+        </div>
         <?php endforeach; ?>
     </div>
 </div>
