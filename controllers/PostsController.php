@@ -12,8 +12,8 @@ class PostsController extends Controller {
     // controller methods
     public function getPosts() {
         $posts = new Post($this->conn);
-        $offset = $this->params['offset'] ?? 0;
-        $limit = $this->params['limit'] ?? 6;
+        $limit = $this->params['limit'] ?? 3;
+        $limit = $this->params['limit'] ?? 3;
         if($posts->fetchPosts($offset, $limit)->success()) {
             $num_btns = $posts->getNumBtns();
             var_dump($num_btns);
@@ -42,17 +42,19 @@ class PostsController extends Controller {
     }
 
     public function create() {
-        $post = new Post($this->conn);
-        if($post->validatePost($this->req)->success()) {
-           if($post->createNewPost()->success()) {
-            Messenger::setMsg("New post created!", "success");
-            header("Location: " . ROOT . "posts/get/" . $post->post_id);
-           }
-        } else {
-            echo "this post has an error";
-            $errors = $post->errors;
-            include "views/create_post.php";
-        }
+        var_dump($this->req);
+        var_dump($this->files);
+        // $post = new Post($this->conn);
+        // if($post->validatePost($this->req)->success()) {
+        //    if($post->createNewPost()->success()) {
+        //     Messenger::setMsg("New post created!", "success");
+        //     header("Location: " . ROOT . "posts/get/" . $post->post_id);
+        //    }
+        // } else {
+        //     echo "this post has an error";
+        //     $errors = $post->errors;
+        //     include "views/create_post.php";
+        // }
     }
 
     public function delete() {
