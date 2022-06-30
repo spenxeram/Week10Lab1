@@ -8,7 +8,7 @@ class FileManager {
     public static $dest;
     public static $img_types = ['png', 'jpg', 'jpeg', 'gif'];
     public static $errors = [];
-    
+
     public static function validateFile($file, $size) {
         self::$file = $file;
         if($file['error'] !== 0) {
@@ -20,7 +20,7 @@ class FileManager {
         }
         $ext = explode("/", $file['type']);
         self::$ext = end($ext); // returns last item in arr
-        if(!in_array(self::$ext, self::$mig_types)) {
+        if(!in_array(self::$ext, self::$img_types)) {
             self::$errors['file_ext'] = "Invalid ext!";
         }
 
